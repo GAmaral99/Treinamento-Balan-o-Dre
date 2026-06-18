@@ -7,7 +7,7 @@
     { "id": "contabilizacao", "texto": "Sempre deixe flegado contabilização \u201cfiscal\u201d." },
     { "id": "contaInicial", "texto": "Conta inicial – 1 / 01-Ativo." },
     { "id": "contaFinal", "texto": "Conta final – 1140 / 05.1.1.01.001 – Resultado do Exercício." },
-    { "id": "niveis", "texto": "Nível da conta, até o 4." },
+    { "id": "niveis", "texto": "Selecione todos os níveis de contas até o nível 4." },
     { "id": "consolidadas", "texto": "Marque a opção Contas consolidadas." },
     { "id": "formulas", "texto": "Marque a opção Fórmulas." },
     { "id": "somarFormulas", "texto": "Marque a opção Somar fórmulas as títulos." }

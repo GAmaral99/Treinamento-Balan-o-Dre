@@ -410,17 +410,24 @@ const Screens = (() => {
           <ul class="steps-list" id="dreStepsList">
             ${config.passos
               .map(
-                (passo) => `
+                (passo) => {
+                  const li = `
                 <li data-passo="${passo.id}">
                   <span class="mark">✓</span>
                   <span>${escapeHtml(passo.texto)}</span>
-                </li>`
+                </li>`;
+                  // Insere o passo de Extenso logo antes de Período Atual
+                  if (passo.id === "periodoAtual") {
+                    return `
+                <li data-passo="${PASSO_EXTENSO_DRE}">
+                  <span class="mark">✓</span>
+                  <span>Marcar <strong>Extenso</strong> e confirmar o modelo padrão</span>
+                </li>${li}`;
+                  }
+                  return li;
+                }
               )
               .join("")}
-            <li data-passo="${PASSO_EXTENSO_DRE}">
-              <span class="mark">✓</span>
-              <span>Marcar <strong>Extenso</strong> e confirmar o modelo padrão</span>
-            </li>
           </ul>
         </div>
 
@@ -833,6 +840,14 @@ const Screens = (() => {
         ${State.modoLivre ? '<p class="modo-livre-badge">⚡ Modo livre: você pode concluir mesmo sem revisar todos os pontos.</p>' : ""}
       </div>
       <p class="analise-progress" id="analiseProgresso">0 de ${config.topicos.length} revisados</p>
+      <div class="card" style="margin-bottom: 20px;">
+        <h3 style="margin-bottom: 6px;">📄 Neste ponto, dois PDFs já foram gerados</h3>
+        <p style="font-size:13.5px; color:var(--ink); margin-bottom:10px;">Os relatórios abaixo foram gerados com as configurações das etapas anteriores. A análise a seguir é feita com base nesses arquivos:</p>
+        <ul style="list-style:disc; padding-left:20px; display:flex; flex-direction:column; gap:6px; font-size:13.5px; color:var(--ink); margin-bottom:0;">
+          <li><strong>Balanço Patrimonial duas colunas</strong> — gerado na etapa de Balanço.</li>
+          <li><strong>Demonstração do Resultado do Exercício (DRE)</strong> — gerado na etapa de DRE.</li>
+        </ul>
+      </div>
       <div id="topicosWrap">
         ${config.topicos
           .map(
